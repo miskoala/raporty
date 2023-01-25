@@ -24,7 +24,7 @@ spring:
   devtools:
     restart:
       enabled: true
-      additional-exclude: static/**
+      additional-exclude: static/**,.h2.server.properties
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
   jackson:
@@ -32,14 +32,17 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/Raporty
+    url: jdbc:h2:file:./target/h2db/db/raporty;DB_CLOSE_DELAY=-1;MODE=LEGACY
     username: Raporty
     password:
     hikari:
       poolName: Hikari
       auto-commit: false
+  h2:
+    console:
+      # disable spring boot built-in h2-console since we start it manually with correct configuration
+      enabled: false
   jpa:
-    database-platform: tech.jhipster.domain.util.FixedPostgreSQL10Dialect
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker

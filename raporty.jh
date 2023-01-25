@@ -1,0 +1,20 @@
+
+application {
+  config {
+    baseName Raporty,
+    applicationType monolith,
+    packageName org.mikala,
+    authenticationType jwt,
+    prodDatabaseType postgresql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity Raport {
+symbol String required unique minlength(2) maxlength(20)
+nazwa String required minlength(2) maxlength(255)
+wersja Integer required
+} 
+
+    

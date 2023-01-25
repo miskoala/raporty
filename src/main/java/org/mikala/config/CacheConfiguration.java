@@ -48,6 +48,7 @@ public class CacheConfiguration {
             createCache(cm, org.mikala.domain.User.class.getName());
             createCache(cm, org.mikala.domain.Authority.class.getName());
             createCache(cm, org.mikala.domain.User.class.getName() + ".authorities");
+            createCache(cm, org.mikala.domain.Raport.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

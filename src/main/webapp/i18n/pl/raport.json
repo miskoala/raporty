@@ -1,0 +1,26 @@
+{
+  "raportyApp": {
+    "raport": {
+      "home": {
+        "title": "Raport",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Raport",
+        "createOrEditLabel": "Dodaj lub edytuj: Raport",
+        "notFound": "No Raports found"
+      },
+      "created": "Utworzono nowy obiekt typu Raport z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Raport z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Raport z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Raport {{ id }}?"
+      },
+      "detail": {
+        "title": "Raport"
+      },
+      "id": "ID",
+      "symbol": "Symbol",
+      "nazwa": "Nazwa",
+      "wersja": "Wersja"
+    }
+  }
+}
