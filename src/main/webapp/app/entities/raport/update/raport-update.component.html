@@ -1,0 +1,99 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-raport-heading" data-cy="RaportCreateUpdateHeading" jhiTranslate="raportyApp.raport.home.createOrEditLabel">
+        Dodaj lub edytuj: Raport
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="raportyApp.raport.symbol" for="field_symbol">Symbol</label>
+          <input type="text" class="form-control" name="symbol" id="field_symbol" data-cy="symbol" formControlName="symbol" />
+          <div *ngIf="editForm.get('symbol')!.invalid && (editForm.get('symbol')!.dirty || editForm.get('symbol')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('symbol')?.errors?.required" jhiTranslate="entity.validation.required">
+              To pole jest wymagane.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('symbol')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 2 }"
+            >
+              Wartość musi mieć długość co najmniej 2 znaków.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('symbol')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 20 }"
+            >
+              Wartość nie może być dłuższa niż 20 znaków.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="raportyApp.raport.nazwa" for="field_nazwa">Nazwa</label>
+          <input type="text" class="form-control" name="nazwa" id="field_nazwa" data-cy="nazwa" formControlName="nazwa" />
+          <div *ngIf="editForm.get('nazwa')!.invalid && (editForm.get('nazwa')!.dirty || editForm.get('nazwa')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nazwa')?.errors?.required" jhiTranslate="entity.validation.required">
+              To pole jest wymagane.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nazwa')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 2 }"
+            >
+              Wartość musi mieć długość co najmniej 2 znaków.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nazwa')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 255 }"
+            >
+              Wartość nie może być dłuższa niż 255 znaków.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="raportyApp.raport.wersja" for="field_wersja">Wersja</label>
+          <input type="number" class="form-control" name="wersja" id="field_wersja" data-cy="wersja" formControlName="wersja" />
+          <div *ngIf="editForm.get('wersja')!.invalid && (editForm.get('wersja')!.dirty || editForm.get('wersja')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('wersja')?.errors?.required" jhiTranslate="entity.validation.required">
+              To pole jest wymagane.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('wersja')?.errors?.number" jhiTranslate="entity.validation.number">
+              Wartość powinna być liczbowa.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Anuluj</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Zapisz</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

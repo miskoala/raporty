@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="RaportHeading">
+    <span jhiTranslate="raportyApp.raport.home.title">Raport</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="raportyApp.raport.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-raport"
+        [routerLink]="['/raport/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="raportyApp.raport.home.createLabel"> Dodaj Raport </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="raports?.length === 0">
+    <span jhiTranslate="raportyApp.raport.home.notFound">No Raports found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="raports && raports.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="symbol">
+            <div class="d-flex">
+              <span jhiTranslate="raportyApp.raport.symbol">Symbol</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nazwa">
+            <div class="d-flex">
+              <span jhiTranslate="raportyApp.raport.nazwa">Nazwa</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="wersja">
+            <div class="d-flex">
+              <span jhiTranslate="raportyApp.raport.wersja">Wersja</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let raport of raports; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/raport', raport.id, 'view']">{{ raport.id }}</a>
+          </td>
+          <td>{{ raport.symbol }}</td>
+          <td>{{ raport.nazwa }}</td>
+          <td>{{ raport.wersja }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/raport', raport.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Widok</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/raport', raport.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edytuj</span>
+              </button>
+
+              <button type="submit" (click)="delete(raport)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Usuń</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
