@@ -14,7 +14,12 @@ application {
 entity Raport {
 symbol String required unique minlength(2) maxlength(20)
 nazwa String required minlength(2) maxlength(255)
-wersja Integer required
+wersja Integer required min(1)
 } 
-
+entity GrupaRaportow {
+nazwa String required unique minlength(10) maxlength(255)
+}
+relationship ManyToMany {
+  Raport{grupaRaportow} to GrupaRaportow{raporty}
+}
     
