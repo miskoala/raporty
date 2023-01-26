@@ -1,0 +1,31 @@
+{
+  "applications": ["Raporty"],
+  "changelogDate": "20230126124810",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "grupa_raportow",
+  "fields": [
+    {
+      "fieldName": "nazwa",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "255",
+      "fieldValidateRulesMinlength": "10"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "GrupaRaportow",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "raport",
+      "otherEntityRelationshipName": "grupaRaportow",
+      "ownerSide": false,
+      "relationshipName": "raporty",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

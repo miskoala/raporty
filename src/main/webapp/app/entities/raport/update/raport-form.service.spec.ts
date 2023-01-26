@@ -23,6 +23,7 @@ describe('Raport Form Service', () => {
             symbol: expect.any(Object),
             nazwa: expect.any(Object),
             wersja: expect.any(Object),
+            grupaRaportows: expect.any(Object),
           })
         );
       });
@@ -36,6 +37,7 @@ describe('Raport Form Service', () => {
             symbol: expect.any(Object),
             nazwa: expect.any(Object),
             wersja: expect.any(Object),
+            grupaRaportows: expect.any(Object),
           })
         );
       });

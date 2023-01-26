@@ -8,6 +8,7 @@
       "entities": {
         "main": "Encje",
         "raport": "Raport",
+        "grupaRaportow": "Grupa Raportow",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

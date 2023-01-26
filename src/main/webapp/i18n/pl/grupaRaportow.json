@@ -1,0 +1,25 @@
+{
+  "raportyApp": {
+    "grupaRaportow": {
+      "home": {
+        "title": "Grupa Raportow",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Grupa Raportow",
+        "createOrEditLabel": "Dodaj lub edytuj: Grupa Raportow",
+        "notFound": "No Grupa Raportows found"
+      },
+      "created": "Utworzono nowy obiekt typu Grupa Raportow z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Grupa Raportow z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Grupa Raportow z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Grupa Raportow {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupa Raportow"
+      },
+      "id": "ID",
+      "nazwa": "Nazwa",
+      "raporty": "Raporty"
+    }
+  }
+}

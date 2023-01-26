@@ -49,6 +49,9 @@ public class CacheConfiguration {
             createCache(cm, org.mikala.domain.Authority.class.getName());
             createCache(cm, org.mikala.domain.User.class.getName() + ".authorities");
             createCache(cm, org.mikala.domain.Raport.class.getName());
+            createCache(cm, org.mikala.domain.Raport.class.getName() + ".grupaRaportows");
+            createCache(cm, org.mikala.domain.GrupaRaportow.class.getName());
+            createCache(cm, org.mikala.domain.GrupaRaportow.class.getName() + ".raporties");
             // jhipster-needle-ehcache-add-entry
         };
     }
