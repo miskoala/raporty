@@ -22,7 +22,8 @@
     {
       "fieldName": "wersja",
       "fieldType": "Integer",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "1"
     }
   ],
   "fluentMethods": true,
@@ -30,6 +31,14 @@
   "name": "Raport",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "grupaRaportow",
+      "otherEntityRelationshipName": "raporty",
+      "ownerSide": true,
+      "relationshipName": "grupaRaportow",
+      "relationshipType": "many-to-many"
+    }
+  ],
   "service": "no"
 }

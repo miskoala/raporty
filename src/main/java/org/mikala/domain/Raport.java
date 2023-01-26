@@ -1,6 +1,9 @@
 package org.mikala.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -34,8 +37,19 @@ public class Raport implements Serializable {
     private String nazwa;
 
     @NotNull
+    @Min(value = 1)
     @Column(name = "wersja", nullable = false)
     private Integer wersja;
+
+    @ManyToMany
+    @JoinTable(
+        name = "rel_raport__grupa_raportow",
+        joinColumns = @JoinColumn(name = "raport_id"),
+        inverseJoinColumns = @JoinColumn(name = "grupa_raportow_id")
+    )
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "raporties" }, allowSetters = true)
+    private Set<GrupaRaportow> grupaRaportows = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -89,6 +103,31 @@ public class Raport implements Serializable {
 
     public void setWersja(Integer wersja) {
         this.wersja = wersja;
+    }
+
+    public Set<GrupaRaportow> getGrupaRaportows() {
+        return this.grupaRaportows;
+    }
+
+    public void setGrupaRaportows(Set<GrupaRaportow> grupaRaportows) {
+        this.grupaRaportows = grupaRaportows;
+    }
+
+    public Raport grupaRaportows(Set<GrupaRaportow> grupaRaportows) {
+        this.setGrupaRaportows(grupaRaportows);
+        return this;
+    }
+
+    public Raport addGrupaRaportow(GrupaRaportow grupaRaportow) {
+        this.grupaRaportows.add(grupaRaportow);
+        grupaRaportow.getRaporties().add(this);
+        return this;
+    }
+
+    public Raport removeGrupaRaportow(GrupaRaportow grupaRaportow) {
+        this.grupaRaportows.remove(grupaRaportow);
+        grupaRaportow.getRaporties().remove(this);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

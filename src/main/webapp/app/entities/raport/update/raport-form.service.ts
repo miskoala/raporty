@@ -14,13 +14,14 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type RaportFormGroupInput = IRaport | PartialWithRequiredKeyOf<NewRaport>;
 
-type RaportFormDefaults = Pick<NewRaport, 'id'>;
+type RaportFormDefaults = Pick<NewRaport, 'id' | 'grupaRaportows'>;
 
 type RaportFormGroupContent = {
   id: FormControl<IRaport['id'] | NewRaport['id']>;
   symbol: FormControl<IRaport['symbol']>;
   nazwa: FormControl<IRaport['nazwa']>;
   wersja: FormControl<IRaport['wersja']>;
+  grupaRaportows: FormControl<IRaport['grupaRaportows']>;
 };
 
 export type RaportFormGroup = FormGroup<RaportFormGroupContent>;
@@ -47,8 +48,9 @@ export class RaportFormService {
         validators: [Validators.required, Validators.minLength(2), Validators.maxLength(255)],
       }),
       wersja: new FormControl(raportRawValue.wersja, {
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.min(1)],
       }),
+      grupaRaportows: new FormControl(raportRawValue.grupaRaportows ?? []),
     });
   }
 
@@ -69,6 +71,7 @@ export class RaportFormService {
   private getFormDefaults(): RaportFormDefaults {
     return {
       id: null,
+      grupaRaportows: [],
     };
   }
 }

@@ -26,6 +26,13 @@
         <dd>
           <span>{{ raport.wersja }}</span>
         </dd>
+        <dt><span jhiTranslate="raportyApp.raport.grupaRaportow">Grupa Raportow</span></dt>
+        <dd>
+          <span *ngFor="let grupaRaportow of raport.grupaRaportows; let last = last">
+            <a [routerLink]="['/grupa-raportow', grupaRaportow.id, 'view']">{{ grupaRaportow.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

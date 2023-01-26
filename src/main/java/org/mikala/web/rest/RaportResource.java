@@ -148,12 +148,17 @@ public class RaportResource {
     /**
      * {@code GET  /raports} : get all the raports.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of raports in body.
      */
     @GetMapping("/raports")
-    public List<Raport> getAllRaports() {
+    public List<Raport> getAllRaports(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all Raports");
-        return raportRepository.findAll();
+        if (eagerload) {
+            return raportRepository.findAllWithEagerRelationships();
+        } else {
+            return raportRepository.findAll();
+        }
     }
 
     /**
@@ -165,7 +170,7 @@ public class RaportResource {
     @GetMapping("/raports/{id}")
     public ResponseEntity<Raport> getRaport(@PathVariable Long id) {
         log.debug("REST request to get Raport : {}", id);
-        Optional<Raport> raport = raportRepository.findById(id);
+        Optional<Raport> raport = raportRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(raport);
     }
 

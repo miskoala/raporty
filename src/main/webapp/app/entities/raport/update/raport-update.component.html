@@ -72,10 +72,35 @@
             <small class="form-text text-danger" *ngIf="editForm.get('wersja')?.errors?.required" jhiTranslate="entity.validation.required">
               To pole jest wymagane.
             </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('wersja')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 1 }"
+            >
+              Wartość powinna być większa niż 1.
+            </small>
             <small class="form-text text-danger" [hidden]="!editForm.get('wersja')?.errors?.number" jhiTranslate="entity.validation.number">
               Wartość powinna być liczbowa.
             </small>
           </div>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="raportyApp.raport.grupaRaportow" for="field_grupaRaportows">Grupa Raportow</label>
+          <select
+            class="form-control"
+            id="field_grupaRaportows"
+            data-cy="grupaRaportow"
+            multiple
+            name="grupaRaportows"
+            formControlName="grupaRaportows"
+            [compareWith]="compareGrupaRaportow"
+          >
+            <option [ngValue]="grupaRaportowOption" *ngFor="let grupaRaportowOption of grupaRaportowsSharedCollection">
+              {{ grupaRaportowOption.id }}
+            </option>
+          </select>
         </div>
       </div>
 
