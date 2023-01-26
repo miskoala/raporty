@@ -72,6 +72,14 @@
             <small class="form-text text-danger" *ngIf="editForm.get('wersja')?.errors?.required" jhiTranslate="entity.validation.required">
               To pole jest wymagane.
             </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('wersja')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 1 }"
+            >
+              Wartość powinna być większa niż 1.
+            </small>
             <small class="form-text text-danger" [hidden]="!editForm.get('wersja')?.errors?.number" jhiTranslate="entity.validation.number">
               Wartość powinna być liczbowa.
             </small>

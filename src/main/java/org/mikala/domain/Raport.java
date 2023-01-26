@@ -34,6 +34,7 @@ public class Raport implements Serializable {
     private String nazwa;
 
     @NotNull
+    @Min(value = 1)
     @Column(name = "wersja", nullable = false)
     private Integer wersja;
 

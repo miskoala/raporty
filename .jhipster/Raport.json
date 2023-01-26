@@ -22,7 +22,8 @@
     {
       "fieldName": "wersja",
       "fieldType": "Integer",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "1"
     }
   ],
   "fluentMethods": true,

@@ -47,7 +47,7 @@ export class RaportFormService {
         validators: [Validators.required, Validators.minLength(2), Validators.maxLength(255)],
       }),
       wersja: new FormControl(raportRawValue.wersja, {
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.min(1)],
       }),
     });
   }
